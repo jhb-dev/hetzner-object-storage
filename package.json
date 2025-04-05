@@ -1,0 +1,68 @@
+{
+  "name": "@joneslloyd/payload-storage-hetzner",
+  "version": "1.0.0",
+  "description": "Payload storage adapter for Hetzner Object Storage",
+  "homepage": "https://github.com/joneslloyd/payload-storage-hetzner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joneslloyd/payload-storage-hetzner"
+  },
+  "license": "MIT",
+  "author": "Jones Lloyd",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "import": "./dist/exports/client.js",
+      "types": "./dist/exports/client.d.ts",
+      "default": "./dist/exports/client.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run build:types && npm run build:swc",
+    "build:clean": "rimraf dist *.tsbuildinfo && npm run build",
+    "build:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,yml,yaml,html}\"",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.782.0",
+    "@aws-sdk/lib-storage": "^3.782.0",
+    "@aws-sdk/s3-request-presigner": "^3.782.0"
+  },
+  "devDependencies": {
+    "@payloadcms/plugin-cloud-storage": "^3.33.0",
+    "@payloadcms/ui": "^3.33.0",
+    "@smithy/node-http-handler": "4.0.4",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.11.16",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "eslint": "^9.24.0",
+    "payload": "^3.33.0",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@payloadcms/plugin-cloud-storage": "^3.33.0",
+    "payload": "^3.33.0",
+    "react": "^18.0.0 || ^19.1.0"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0"
+  }
+}
