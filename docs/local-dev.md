@@ -13,8 +13,8 @@ This repository allows for local testing and development of the Hetzner Object S
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/joneslloyd/payload-storage-hetzner.git
-   cd payload-storage-hetzner
+   git clone https://github.com/joneslloyd/hetzner-object-storage.git
+   cd hetzner-object-storage
    ```
 
 2. Install dependencies

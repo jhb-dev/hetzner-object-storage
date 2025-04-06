@@ -2,10 +2,10 @@
   "name": "@joneslloyd/payload-storage-hetzner",
   "version": "1.0.0",
   "description": "Payload storage adapter for Hetzner Object Storage",
-  "homepage": "https://github.com/joneslloyd/payload-storage-hetzner",
+  "homepage": "https://github.com/joneslloyd/hetzner-object-storage",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joneslloyd/payload-storage-hetzner"
+    "url": "https://github.com/joneslloyd/hetzner-object-storage"
   },
   "license": "MIT",
   "author": "Jones Lloyd",
