@@ -1,6 +1,6 @@
 {
   "name": "@joneslloyd/payload-storage-hetzner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Payload storage adapter for Hetzner Object Storage",
   "homepage": "https://github.com/joneslloyd/hetzner-object-storage",
   "repository": {
