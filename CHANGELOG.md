@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.42.1] - 2025-01-27
+
+### Added
+- Cache-Control header support for uploaded files via `cacheControl` configuration option
+- Cache-Control headers are applied to both server-side and client-side uploads
+
 ## [3.42.0] - 2025-06-13
 
 ### Changed

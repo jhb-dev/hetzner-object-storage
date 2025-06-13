@@ -12,6 +12,7 @@ interface Args {
   access?: ClientUploadsAccess
   acl?: 'private' | 'public-read'
   bucket: string
+  cacheControl?: string
   collections: HetznerStorageOptions['collections']
   getStorageClient: () => AWS.S3
 }
@@ -22,6 +23,7 @@ export const getGenerateSignedURLHandler = ({
   access = defaultAccess,
   acl,
   bucket,
+  cacheControl,
   collections,
   getStorageClient,
 }: Args): PayloadHandler => {
@@ -47,7 +49,13 @@ export const getGenerateSignedURLHandler = ({
 
     const url = await getSignedUrl(
       getStorageClient(),
-      new AWS.PutObjectCommand({ ACL: acl, Bucket: bucket, ContentType: mimeType, Key: fileKey }),
+      new AWS.PutObjectCommand({
+        ACL: acl,
+        Bucket: bucket,
+        CacheControl: cacheControl,
+        ContentType: mimeType,
+        Key: fileKey
+      }),
       {
         expiresIn: 600, // URL expires in 10 minutes
       },

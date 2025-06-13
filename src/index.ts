@@ -31,6 +31,12 @@ export type HetznerStorageOptions = {
   bucket: string
 
   /**
+   * Cache-Control header value to set on uploaded files.
+   * For example: 'max-age=31536000' for 1 year cache.
+   */
+  cacheControl?: string
+
+  /**
    * Do uploads directly on the client to bypass server upload limits.
    * You must allow CORS PUT method for the bucket to your website.
    */
@@ -125,6 +131,7 @@ export const hetznerStorage: HetznerStoragePlugin =
             : undefined,
         acl: hetznerStorageOptions.acl,
         bucket: hetznerStorageOptions.bucket,
+        cacheControl: hetznerStorageOptions.cacheControl,
         collections: hetznerStorageOptions.collections,
         getStorageClient,
       }),
@@ -176,7 +183,7 @@ export const hetznerStorage: HetznerStoragePlugin =
 
 function hetznerStorageInternal(
   getStorageClient: () => AWS.S3,
-  { acl, bucket, clientUploads, region }: HetznerStorageOptions,
+  { acl, bucket, cacheControl, clientUploads, region }: HetznerStorageOptions,
 ): Adapter {
   return ({ collection, prefix }): GeneratedAdapter => {
     return {
@@ -187,6 +194,7 @@ function hetznerStorageInternal(
       handleUpload: getHandleUpload({
         acl,
         bucket,
+        cacheControl,
         collection,
         getStorageClient,
         prefix,

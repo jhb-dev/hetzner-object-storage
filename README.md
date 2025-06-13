@@ -57,6 +57,8 @@ export default buildConfig({
       clientUploads: true,
       // Optional: set ACL for uploaded files
       acl: 'public-read',
+      // Optional: set Cache-Control header for uploaded files
+      cacheControl: 'max-age=31536000', // 1 year cache
     }),
   ],
 })
@@ -71,6 +73,7 @@ export default buildConfig({
 | `credentials`\*       | `{ accessKeyId: string, secretAccessKey: string }` | Your Hetzner Object Storage credentials                                     |
 | `collections`\*       | `Record<string, CollectionOptions \| true>`        | Object with keys matching collection slugs where you want to enable storage |
 | `acl`                 | `'private'` \| `'public-read'`                     | Access control list for uploads. Default: none                              |
+| `cacheControl`        | `string`                                           | Cache-Control header value for uploaded files. Default: none                |
 | `clientUploads`       | `boolean` \| `object`                              | Enable client-side uploads. Default: `false`                                |
 | `disableLocalStorage` | `boolean`                                          | If files should not be stored locally. Default: `true`                      |
 | `enabled`             | `boolean`                                          | Whether to enable this plugin. Default: `true`                              |
@@ -95,6 +98,17 @@ hetznerStorage({
 ```
 
 When disabling Payload's access control, make sure to set your bucket visibility in Hetzner to `public` if you want files to be publicly accessible.
+
+You can also set Cache-Control headers on uploaded files to improve performance:
+
+```ts
+hetznerStorage({
+  // ...
+  cacheControl: 'max-age=31536000', // Cache for 1 year
+})
+```
+
+Common values: `max-age=31536000` (1 year), `max-age=86400` (1 day), `no-cache` (always revalidate). This applies to both server-side and client-side uploads.
 
 ## Client-Side Uploads
 
