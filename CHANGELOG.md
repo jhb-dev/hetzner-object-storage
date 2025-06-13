@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.42.1] - 2025-01-27
+## [3.42.3] - 2025-06-13
+
+### Fixed
+
+- **CRITICAL**: Fixed redirect handler logic bug where thumbnails didn't work when `clientUploads: true` was enabled
+- Redirect handler now properly works regardless of `clientUploads` setting when `disablePayloadAccessControl: true`
+
+### Added
+
+- Automatic code formatting on commit using Husky pre-commit hooks
+- Ensures consistent code style across all contributions
+
+## [3.42.1] - 2025-06-13
 
 ### Added
 
