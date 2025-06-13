@@ -68,6 +68,34 @@ export const cloudStoragePlugin =
                 return adapter.staticHandler(req, args)
               }
             })
+          } else {
+            // When disablePayloadAccessControl: true, add a redirect handler
+            // that redirects all file requests to direct storage URLs
+            handlers.push(async (req, args) => {
+              try {
+                const { filename } = args.params
+                const url = await adapter.generateURL?.({
+                  collection: existingCollection,
+                  data: args.doc || {},
+                  filename,
+                  prefix: options.prefix,
+                })
+
+                if (url) {
+                  return new Response(null, {
+                    status: 302,
+                    headers: {
+                      'Location': url,
+                    },
+                  })
+                }
+
+                return new Response('Not Found', { status: 404 })
+              } catch (err) {
+                req.payload.logger.error(err)
+                return new Response('Internal Server Error', { status: 500 })
+              }
+            })
           }
 
           return {

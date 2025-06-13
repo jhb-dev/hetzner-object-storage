@@ -9,7 +9,7 @@ import type { NodeHttpHandlerOptions } from '@smithy/node-http-handler'
 import type { Config, Plugin, UploadCollectionSlug } from 'payload'
 
 import * as AWS from '@aws-sdk/client-s3'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { cloudStoragePlugin } from './plugin.js'
 import { initClientUploads } from '@payloadcms/plugin-cloud-storage/utilities'
 
 import { getGenerateSignedURLHandler } from './generateSignedURL.js'
@@ -137,7 +137,7 @@ export const hetznerStorage: HetznerStoragePlugin =
 
     const adapter = hetznerStorageInternal(getStorageClient, hetznerStorageOptions)
 
-    // Add adapter to each collection option object
+            // Add adapter to each collection option object
     const collectionsWithAdapter: CloudStoragePluginOptions['collections'] = Object.entries(
       hetznerStorageOptions.collections,
     ).reduce(
@@ -159,7 +159,7 @@ export const hetznerStorage: HetznerStoragePlugin =
           return collection
         }
 
-        return {
+                return {
           ...collection,
           upload: {
             ...(typeof collection.upload === 'object' ? collection.upload : {}),
@@ -176,13 +176,9 @@ export const hetznerStorage: HetznerStoragePlugin =
 
 function hetznerStorageInternal(
   getStorageClient: () => AWS.S3,
-  { acl, bucket, clientUploads }: HetznerStorageOptions,
+  { acl, bucket, clientUploads, region }: HetznerStorageOptions,
 ): Adapter {
   return ({ collection, prefix }): GeneratedAdapter => {
-    // Get the region from the client
-    const client = getStorageClient()
-    const region = typeof client.config.region === 'string' ? client.config.region : 'eu-central-1'
-
     return {
       name: 'hetzner',
       clientUploads,
