@@ -58,7 +58,7 @@ export const cloudStoragePlugin =
               : []),
           ]
 
-                    if (!options.disablePayloadAccessControl) {
+          if (!options.disablePayloadAccessControl) {
             handlers.push(adapter.staticHandler)
           } else {
             // When disablePayloadAccessControl: true, add a redirect handler
@@ -77,7 +77,7 @@ export const cloudStoragePlugin =
                   return new Response(null, {
                     status: 302,
                     headers: {
-                      'Location': url,
+                      Location: url,
                     },
                   })
                 }

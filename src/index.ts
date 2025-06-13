@@ -144,7 +144,7 @@ export const hetznerStorage: HetznerStoragePlugin =
 
     const adapter = hetznerStorageInternal(getStorageClient, hetznerStorageOptions)
 
-            // Add adapter to each collection option object
+    // Add adapter to each collection option object
     const collectionsWithAdapter: CloudStoragePluginOptions['collections'] = Object.entries(
       hetznerStorageOptions.collections,
     ).reduce(
@@ -166,7 +166,7 @@ export const hetznerStorage: HetznerStoragePlugin =
           return collection
         }
 
-                return {
+        return {
           ...collection,
           upload: {
             ...(typeof collection.upload === 'object' ? collection.upload : {}),

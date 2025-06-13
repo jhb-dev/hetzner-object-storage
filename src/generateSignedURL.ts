@@ -54,7 +54,7 @@ export const getGenerateSignedURLHandler = ({
         Bucket: bucket,
         CacheControl: cacheControl,
         ContentType: mimeType,
-        Key: fileKey
+        Key: fileKey,
       }),
       {
         expiresIn: 600, // URL expires in 10 minutes
