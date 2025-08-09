@@ -36,7 +36,6 @@
     "clean": "rimraf dist *.tsbuildinfo",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "postinstall": "npm run build",
     "prepublishOnly": "npm run clean && npm run build",
     "version:patch": "pnpm version patch -m \"chore(release): v%s\"",
     "prepare": "husky"
