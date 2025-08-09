@@ -37,8 +37,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run clean && npm run build",
-    "version:patch": "pnpm version patch -m \"chore(release): v%s\"",
-    "prepare": "husky"
+    "version:patch": "pnpm version patch -m \"chore(release): v%s\""
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.806.0",
